@@ -1845,7 +1845,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card */ "./resources/js/components/Card.vue");
 //
 //
 //
@@ -1875,15 +1874,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    Card: _Card__WEBPACK_IMPORTED_MODULE_0__.default
-  },
   data: function data() {
     return {
-      turbines: [],
-      loaded: false
+      turbines: []
     };
   },
   beforeMount: function beforeMount() {
@@ -1891,9 +1927,6 @@ __webpack_require__.r(__webpack_exports__);
 
     this.axios.get("http://127.0.0.1/api/turbines").then(function (response) {
       _this.turbines = response.data;
-    });
-    this.axios.get("http://127.0.0.1/api/inspectTurbines").then(function (response) {
-      console.log(response.data);
     });
   }
 });
@@ -38086,7 +38119,17 @@ var render = function() {
         [
           _c("v-app-bar-nav-icon"),
           _vm._v(" "),
-          _c("v-toolbar-title", [_vm._v("Turbine Inspector")]),
+          _c("v-toolbar-title", [
+            _c("img", {
+              staticClass: "mr-3 pt-3",
+              attrs: {
+                src:
+                  "https://raw.githubusercontent.com/Ailend/Cyberhawk/master/img/header-logo.svg",
+                height: "40"
+              }
+            }),
+            _vm._v("\n      Turbine Inspector")
+          ]),
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
@@ -38105,25 +38148,85 @@ var render = function() {
         [
           _c(
             "v-container",
+            { staticClass: "flex" },
             [
               _c(
                 "v-row",
                 _vm._l(_vm.turbines, function(turbine) {
                   return _c(
                     "v-col",
-                    { key: turbine.id, attrs: { cols: "2" } },
+                    { key: turbine.id, attrs: { cols: "4" } },
                     [
                       _c(
                         "v-card",
-                        { attrs: { height: "200" } },
+                        {
+                          staticClass: "mx-auto",
+                          attrs: { "max-width": "344" }
+                        },
                         [
-                          _c("v-card-title", [
-                            _vm._v("Turbine number " + _vm._s(turbine.id))
-                          ]),
+                          turbine.status === "Coating Damage"
+                            ? _c("v-img", {
+                                attrs: {
+                                  src:
+                                    "https://www.windpowerengineering.com/wp-content/uploads/2019/07/Wind-turbine-1.jpg",
+                                  height: "200px"
+                                }
+                              })
+                            : turbine.status === "Lightning Strike"
+                            ? _c("v-img", {
+                                attrs: {
+                                  src:
+                                    "https://ychef.files.bbci.co.uk/live/624x351/p08qfwt4.jpg",
+                                  height: "200px"
+                                }
+                              })
+                            : turbine.status ===
+                              "Lightning Strike and Coating Damage"
+                            ? _c("v-img", {
+                                attrs: {
+                                  src:
+                                    "https://images.newscientist.com/wp-content/uploads/2013/07/dn23848-1_800.jpg?width=600",
+                                  height: "200px"
+                                }
+                              })
+                            : _c("v-img", {
+                                attrs: {
+                                  src:
+                                    "https://base.imgix.net/files/base/ebm/machinedesign/image/2019/09/machinedesign_21286_windturbines670628828.png?auto=format&fit=crop&h=432&w=768",
+                                  height: "200px"
+                                }
+                              }),
                           _vm._v(" "),
-                          _c("v-card-subtitle", [
-                            _vm._v(_vm._s(turbine.status))
-                          ])
+                          _c(
+                            "v-card-title",
+                            { staticClass: "justify-center" },
+                            [_vm._v("Turbine number " + _vm._s(turbine.id))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-subtitle",
+                            { staticClass: "justify-center" },
+                            [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(turbine.status) +
+                                  "\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            { attrs: { color: "orange lighten-2", text: "" } },
+                            [
+                              _c("v-icon", { attrs: { dark: "" } }, [
+                                _vm._v(" mdi-wrench ")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-spacer")
                         ],
                         1
                       )

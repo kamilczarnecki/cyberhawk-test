@@ -1,8 +1,15 @@
 <template>
   <v-app id="inspire">
     <v-app-bar app shrink-on-scroll>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>Turbine Inspector</v-toolbar-title>
+      <v-app-bar-nav-icon> </v-app-bar-nav-icon>
+      <v-toolbar-title>
+        <img
+          class="mr-3 pt-3"
+          src="https://raw.githubusercontent.com/Ailend/Cyberhawk/master/img/header-logo.svg"
+          height="40"
+        />
+        Turbine Inspector</v-toolbar-title
+      >
 
       <v-spacer></v-spacer>
 
@@ -12,12 +19,47 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
+      <v-container class="flex">
         <v-row>
-          <v-col v-for="turbine in turbines" :key="turbine.id" cols="2">
-            <v-card :class="[isWorking ? workingClass : '', errorClass]" height="200">
-              <v-card-title>Turbine number {{ turbine.id }}</v-card-title>
-              <v-card-subtitle>{{ turbine.status }}</v-card-subtitle>
+          <v-col v-for="turbine in turbines" :key="turbine.id" cols="4">
+            <v-card class="mx-auto" max-width="344">
+              <v-img
+                v-if="turbine.status === 'Coating Damage'"
+                src="https://www.windpowerengineering.com/wp-content/uploads/2019/07/Wind-turbine-1.jpg"
+                height="200px"
+              ></v-img>
+
+              <v-img
+                v-else-if="turbine.status === 'Lightning Strike'"
+                src="https://ychef.files.bbci.co.uk/live/624x351/p08qfwt4.jpg"
+                height="200px"
+              ></v-img>
+
+              <v-img
+                v-else-if="turbine.status === 'Lightning Strike and Coating Damage'"
+                src="https://images.newscientist.com/wp-content/uploads/2013/07/dn23848-1_800.jpg?width=600"
+                height="200px"
+              ></v-img>
+
+              <v-img
+                v-else
+                src="https://base.imgix.net/files/base/ebm/machinedesign/image/2019/09/machinedesign_21286_windturbines670628828.png?auto=format&fit=crop&h=432&w=768"
+                height="200px"
+              ></v-img>
+
+              <v-card-title class="justify-center"
+                >Turbine number {{ turbine.id }}</v-card-title
+              >
+
+              <v-card-subtitle class="justify-center">
+                {{ turbine.status }}
+              </v-card-subtitle>
+
+              <v-btn color="orange lighten-2" text>
+                <v-icon dark> mdi-wrench </v-icon>
+              </v-btn>
+
+              <v-spacer></v-spacer>
             </v-card>
           </v-col>
         </v-row>
@@ -28,22 +70,13 @@
 
 
 <script>
-import Card from "./Card";
 export default {
-  components: {
-    Card,
-  },
   data: () => ({
     turbines: [],
-    loaded: false
   }),
   beforeMount() {
     this.axios.get(`http://127.0.0.1/api/turbines`).then((response) => {
       this.turbines = response.data;
-    });
-
-    this.axios.get(`http://127.0.0.1/api/inspectTurbines`).then((response) => {
-      console.log(response.data)
     });
   },
 };
