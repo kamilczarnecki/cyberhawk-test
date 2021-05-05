@@ -4,7 +4,7 @@
       <v-app-bar-nav-icon> </v-app-bar-nav-icon>
       <v-toolbar-title>
         <img
-          class="mr-3 pt-3"
+          class="mr-3 mt-3"
           src="https://raw.githubusercontent.com/Ailend/Cyberhawk/master/img/header-logo.svg"
           height="40"
         />
@@ -36,7 +36,9 @@
               ></v-img>
 
               <v-img
-                v-else-if="turbine.status === 'Lightning Strike and Coating Damage'"
+                v-else-if="
+                  turbine.status === 'Lightning Strike and Coating Damage'
+                "
                 src="https://images.newscientist.com/wp-content/uploads/2013/07/dn23848-1_800.jpg?width=600"
                 height="200px"
               ></v-img>
@@ -47,13 +49,33 @@
                 height="200px"
               ></v-img>
 
-              <v-card-title class="justify-center"
-                >Turbine number {{ turbine.id }}</v-card-title
-              >
+               <v-card-title class="justify-center">Turbine Number {{ turbine.id }}</v-card-title>
 
-              <v-card-subtitle class="justify-center">
-                {{ turbine.status }}
-              </v-card-subtitle>
+              <v-card-actions class="justify-center">
+
+                <v-icon
+                v-if="turbine.status === 'Coating Damage'" medium
+              > mdi-alert-box-outline </v-icon>
+
+              <v-icon
+                v-else-if="turbine.status === 'Lightning Strike'" medium
+              > mdi-flash-outline </v-icon>
+
+              <v-icon
+                v-else-if="
+                  turbine.status === 'Lightning Strike and Coating Damage'
+                " medium
+              > mdi-alert-octagram-outline </v-icon>
+
+              <v-icon
+                v-else
+               medium
+              > mdi-check-decagram-outline </v-icon>
+
+                <v-card-subtitle>
+                  {{ turbine.status }}
+                </v-card-subtitle>
+              </v-card-actions>
 
               <v-btn color="orange lighten-2" text>
                 <v-icon dark> mdi-wrench </v-icon>

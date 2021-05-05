@@ -1916,6 +1916,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -38121,7 +38143,7 @@ var render = function() {
           _vm._v(" "),
           _c("v-toolbar-title", [
             _c("img", {
-              staticClass: "mr-3 pt-3",
+              staticClass: "mr-3 mt-3",
               attrs: {
                 src:
                   "https://raw.githubusercontent.com/Ailend/Cyberhawk/master/img/header-logo.svg",
@@ -38200,19 +38222,39 @@ var render = function() {
                           _c(
                             "v-card-title",
                             { staticClass: "justify-center" },
-                            [_vm._v("Turbine number " + _vm._s(turbine.id))]
+                            [_vm._v("Turbine Number " + _vm._s(turbine.id))]
                           ),
                           _vm._v(" "),
                           _c(
-                            "v-card-subtitle",
+                            "v-card-actions",
                             { staticClass: "justify-center" },
                             [
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(turbine.status) +
-                                  "\n            "
-                              )
-                            ]
+                              turbine.status === "Coating Damage"
+                                ? _c("v-icon", { attrs: { medium: "" } }, [
+                                    _vm._v(" mdi-alert-box-outline ")
+                                  ])
+                                : turbine.status === "Lightning Strike"
+                                ? _c("v-icon", { attrs: { medium: "" } }, [
+                                    _vm._v(" mdi-flash-outline ")
+                                  ])
+                                : turbine.status ===
+                                  "Lightning Strike and Coating Damage"
+                                ? _c("v-icon", { attrs: { medium: "" } }, [
+                                    _vm._v(" mdi-alert-octagram-outline ")
+                                  ])
+                                : _c("v-icon", { attrs: { medium: "" } }, [
+                                    _vm._v(" mdi-check-decagram-outline ")
+                                  ]),
+                              _vm._v(" "),
+                              _c("v-card-subtitle", [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(turbine.status) +
+                                    "\n              "
+                                )
+                              ])
+                            ],
+                            1
                           ),
                           _vm._v(" "),
                           _c(
